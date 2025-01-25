@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Hero } from './heroes/entities/hero.entity';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { HeroesModule } from './heroes/heroes.module';
 
 @Module({
   imports: [
@@ -11,10 +13,12 @@ import { Hero } from './heroes/entities/hero.entity';
       username: 'postgres',
       password: 'ncPC0JoJ0kc',
       database: 'heroes_db',
-      entities: [Hero],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'], // Busca automática
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Hero]),
+    HeroesModule, // Importa o módulo de heróis
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -18,4 +18,8 @@ export class CreateHeroDto {
   @IsString()
   @IsNotEmpty()
   origin: string;
+
+  @IsString()
+  @IsOptional()
+  imageUrl?: string;
 }

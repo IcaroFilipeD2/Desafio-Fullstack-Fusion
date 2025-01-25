@@ -13,4 +13,10 @@ export class Hero {
 
   @Column()
   origin: string;
+
+  @Column({ nullable: true })
+  imageUrl: string;
+
+  @Column({ nullable: true })
+  description?: string;
 }
